@@ -12,6 +12,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import { register } from './controllers/auth.js';
+import { createPost } from './controllers/posts.js';
 import { verifyToken } from './middleware/auth.js';
 
 /** CONFIGURATIONS */
@@ -41,7 +42,7 @@ const upload = multer({ storage });
 
 /** ROUTES WITH FILES */
 app.post('/auth/register', upload.single('picture'), register); // Upload.single is a middleware. register is a controller
-app.post('/posts', verifyToken, upload.single('picture'));
+app.post('/posts', verifyToken, upload.single('picture'), createPost);
 
 /** ROUTES */
 app.use('/auth', authRoutes);
