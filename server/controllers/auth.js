@@ -56,7 +56,7 @@ export const register = async (req, res) => {
 /** LOGGING IN */
 export const login = async (req, res) => {
   try {
-    const { email, pasword } = req.body;
+    const { email, password } = req.body;
     const user = await User.findOne({ email: email });
 
     // If the user is not found
