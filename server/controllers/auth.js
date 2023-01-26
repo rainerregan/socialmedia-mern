@@ -2,10 +2,17 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js'
 
+/**
+ * ========================================================
+ * Auth Controller
+ * ========================================================
+ * This file contains all controllers for authentication
+ * ========================================================
+ */
+
 /** REGISTER USER */
 export const register = async (req, res) => {
   try {
-
     // Setting a parameter of request object that contains all of these properties
     const {
       firstName,
