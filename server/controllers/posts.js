@@ -22,7 +22,7 @@ export const createPost = async (req, res) => {
     await newPost.save();
 
     // Get updated feed
-    const post = await Post.find();
+    const post = await Post.find().sort({ createdAt: -1 });
 
     // Return the new feed
     res.status(201).json(post);
@@ -35,7 +35,7 @@ export const createPost = async (req, res) => {
 export const getFeedPosts = async (req, res) => {
   try {
     // Get updated feed
-    const post = await Post.find();
+    const post = await Post.find().sort({ createdAt: -1 });
 
     // Return the new feed
     res.status(200).json(post);
@@ -47,7 +47,7 @@ export const getFeedPosts = async (req, res) => {
 export const getUserPosts = async (req, res) => {
   try {
     const { userId } = req.params;
-    const post = await Post.find({ userId });
+    const post = await Post.find({ userId }).sort({ createdAt: -1 });
 
     res.status(200).json(post);
   } catch (error) {
@@ -63,7 +63,7 @@ export const likePost = async (req, res) => {
     const post = await Post.findById(id);
     const isLiked = post.likes.get(userId);
 
-    if(isLiked) {
+    if (isLiked) {
       post.likes.delete(userId); // Remove like
     } else {
       post.likes.set(userId, true); // Like the post
