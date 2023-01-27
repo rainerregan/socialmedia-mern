@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost } from "state";
+import { setPost, setPosts } from "state";
 import PostWidget from "./PostWidget";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
@@ -40,7 +40,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
+      {post.map(
         ({
           _id,
           userId,
@@ -55,9 +55,9 @@ const PostsWidget = ({ userId, isProfile = false }) => {
         }) => (
           <PostWidget 
             key={_id}
-            postid={_id}
+            postId={_id}
             postUserId={userId}
-            name={`${firstname} ${lastName}`}
+            name={`${firstName} ${lastName}`}
             description={description}
             location={location}
             picturePath={picturePath}
@@ -71,4 +71,4 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   );
 }
 
-export default PostWidget;
+export default PostsWidget;
